@@ -1,0 +1,3 @@
+C:/Users/bhati/Music/OpenGL/__PROJECTS_/Template/CMakeProject1/out/build/x64-debug/CMakeFiles/CMakeProject1.dir
+C:/Users/bhati/Music/OpenGL/__PROJECTS_/Template/CMakeProject1/out/build/x64-debug/CMakeFiles/edit_cache.dir
+C:/Users/bhati/Music/OpenGL/__PROJECTS_/Template/CMakeProject1/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
