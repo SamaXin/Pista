@@ -3,7 +3,7 @@
 # ===============================
 # Project Info
 # ===============================
-project(Standard_Template)
+project(pista)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -39,7 +39,7 @@ file(GLOB_RECURSE SHADER_FILES
 # ===============================
 add_executable(${PROJECT_NAME}
     ${SRC_FILES}
-    ${SHADER_FILES} # not compiled, just tracked
+    ${SHADER_FILES} # tracked, not compiled
 )
 
 # Copy shaders to output folder
@@ -52,9 +52,15 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 # ===============================
 # External Libraries
 # ===============================
-add_subdirectory(${EXTERNAL_DIR}/glew)
 add_subdirectory(${EXTERNAL_DIR}/glfw)
 add_subdirectory(${EXTERNAL_DIR}/glm)
+
+# ===============================
+# GLAD
+# ===============================
+set(GLAD_DIR "${EXTERNAL_DIR}/glad")
+add_library(glad STATIC ${GLAD_DIR}/src/glad.c)
+target_include_directories(glad PUBLIC ${GLAD_DIR}/include)
 
 # ===============================
 # ImGui Setup
@@ -65,17 +71,18 @@ target_include_directories(imgui PUBLIC
     ${IMGUI_DIR}
     ${IMGUI_DIR}/backends
     ${EXTERNAL_DIR}/glfw/include
-    ${EXTERNAL_DIR}/glew/include
+    ${GLAD_DIR}/include
 )
-target_link_libraries(imgui PRIVATE glfw libglew_static)
-target_compile_definitions(imgui PRIVATE IMGUI_IMPL_OPENGL_LOADER_GLEW)
+
+target_link_libraries(imgui PRIVATE glfw glad)
+target_compile_definitions(imgui PRIVATE IMGUI_IMPL_OPENGL_LOADER_GLAD)
 
 # ===============================
 # Include Directories for Project
 # ===============================
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${SRC_DIR}
-    ${EXTERNAL_DIR}/glew/include
+    ${GLAD_DIR}/include
     ${EXTERNAL_DIR}/glfw/include
     ${EXTERNAL_DIR}/glm
     ${EXTERNAL_DIR}/imgui
@@ -86,7 +93,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 # ===============================
 target_link_libraries(${PROJECT_NAME} PRIVATE
     glfw
-    libglew_static
+    glad
     imgui
 )
 

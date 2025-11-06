@@ -1,5 +1,6 @@
 // main.cpp
-#include <GL/glew.h>
+//#include <GL/glew.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <vector>
@@ -71,8 +72,8 @@ int main() {
     }
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
-    if (glewInit() != GLEW_OK) {
-        cout << "Failed GLEW !" << endl;
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cout << "Failed to initialize GLAD!" << std::endl;
         glfwDestroyWindow(window);
         glfwTerminate();
         return -1;

@@ -1,0 +1,10 @@
+^C:\USERS\BHATI\MUSIC\OPENGL\__PROJECTS_\TEMPLATE\PISTA\EXTERNAL\GLFW\CMAKELISTS.TXT
+setlocal
+C:\Users\bhati\cmake-4.0.0-rc4-windows-x86_64\cmake\bin\cmake.exe -SC:/Users/bhati/Music/OpenGL/__PROJECTS_/Template/pista/external/glfw -BC:/Users/bhati/Music/OpenGL/__PROJECTS_/Template/pista/external/glfw/outbuild --check-stamp-file C:/Users/bhati/Music/OpenGL/__PROJECTS_/Template/pista/external/glfw/outbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
