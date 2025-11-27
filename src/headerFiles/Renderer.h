@@ -2,6 +2,18 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
+using namespace std;
+
+class Renderer {
+private:
+    unsigned int rendererId;
+public:
+
+};
+
+
+
 
 //Error Hndling using glDebugCallback()
 void APIENTRY GLDebugMessageCallBack(GLenum source,GLenum type,

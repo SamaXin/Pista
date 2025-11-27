@@ -5,6 +5,14 @@
 #include "./../headerFiles/Renderer.h"
 using namespace std;
 
+
+//------------------Renderer Class---------------------------
+//class Renderer {
+//public:
+//    Renderer();
+//    ~Renderer();
+//};
+
 //Clearing the error Before checking the error to specific call back func
 void GLClearError() {
     while (glGetError() != GL_NO_ERROR);
@@ -46,9 +54,4 @@ void InitDebugCallBack() {
 }
 
 
-class Renderer {
-private:
-public:
-    Renderer();
-};
 

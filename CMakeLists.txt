@@ -3,7 +3,7 @@
 # ===============================
 # Project Info
 # ===============================
-project(pista)
+project(RayTracer)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -40,7 +40,7 @@ file(GLOB_RECURSE SHADER_FILES
 add_executable(${PROJECT_NAME}
     ${SRC_FILES}
     ${SHADER_FILES} # tracked, not compiled
-)
+ "src/mesh/sphere.cpp" "src/mesh/sphere.h")
 
 # Copy shaders to output folder
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
@@ -59,13 +59,13 @@ add_subdirectory(${EXTERNAL_DIR}/glm)
 # GLAD
 # ===============================
 set(GLAD_DIR "${EXTERNAL_DIR}/glad")
-add_library(glad STATIC ${GLAD_DIR}/src/glad.c)
+add_library(glad STATIC ${GLAD_DIR}/src/glad.c "src/mesh/sphere.cpp" "src/mesh/sphere.h")
 target_include_directories(glad PUBLIC ${GLAD_DIR}/include)
 
 # ===============================
 # ImGui Setup
 # ===============================
-add_library(imgui STATIC ${IMGUI_SRC})
+add_library(imgui STATIC ${IMGUI_SRC} "src/mesh/sphere.cpp" "src/mesh/sphere.h")
 
 target_include_directories(imgui PUBLIC
     ${IMGUI_DIR}

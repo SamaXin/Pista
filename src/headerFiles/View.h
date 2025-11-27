@@ -18,6 +18,6 @@ public:
         glm::vec3 cameraPos, glm::vec3 cameraTar, glm::vec3 cameraDir
     );
     glm::mat4 getViewMatrix() const;
-    glm::vec3 getPosCamera() const;
-    void setPosCamera(const glm::vec3& newPos);
+    //glm::vec3 getPosCamera() const;
+    void setCamPos(const glm::vec3& newPos);
 };

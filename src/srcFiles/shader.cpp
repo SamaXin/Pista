@@ -24,6 +24,26 @@ Shader::~Shader() {
     glDeleteProgram(m_RenderId);
 }
 
+//Creating the Shader 
+unsigned int Shader::CreateShader(const std::string& vertexShader, const std::string& fragmentShader) {
+    unsigned int program = glCreateProgram();
+    unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
+    unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
+
+    //Attach shaders to program
+    glAttachShader(program, vs);
+    glAttachShader(program, fs);
+    //Link to Program
+    glLinkProgram(program);
+    //Validate the program
+    glValidateProgram(program);
+    //Delete Shader after Use
+    glDeleteShader(vs);
+    glDeleteShader(fs);
+    return program;
+}
+
+
 //Reading the Shader program
 bool Shader::ReadShader(const std::string& vertexPath, const std::string& fragmentPath) {
     stringstream buffer;
@@ -62,24 +82,6 @@ unsigned int Shader::CompileShader(unsigned int type, const std::string& shader)
 }
 
 
-//Creating the Shader 
-unsigned int Shader::CreateShader(const std::string & vertexShader, const std::string  & fragmentShader) {
-    unsigned int program = glCreateProgram();
-    unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
-    unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
-
-    //Attach shaders to program
-    glAttachShader(program, vs);
-    glAttachShader(program, fs);
-    //Link to Program
-    glLinkProgram(program);
-    //Validate the program
-    glValidateProgram(program);
-    //Delete Shader after Use
-    glDeleteShader(vs);
-    glDeleteShader(fs);
-    return program;
-}
 
 //Binding the program
 void Shader::bind()  {

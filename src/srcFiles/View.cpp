@@ -17,12 +17,13 @@ glm::mat4 View::getViewMatrix() const
 	return glm::lookAt(cameraPos, cameraTar, cameraDir);
 }
 
-glm::vec3 View::getPosCamera() const
-{
-	return cameraPos;
-}
-
-void View::setPosCamera(const glm::vec3& newPos) 
+void View::setCamPos(const glm::vec3& newPos) 
 {
 	cameraPos = newPos;
 }
+
+//glm::vec3 View::getPosCamera() const
+//{
+//	return cameraPos;
+//}
+
